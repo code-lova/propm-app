@@ -16,7 +16,6 @@ const page = () => {
         tag: '',
     });
 
-
     useEffect(() => {
         if (!session?.user.id) {
           router.push("/");
@@ -52,7 +51,7 @@ const page = () => {
     }
 
     if (!session) {
-        return <p>Loading...</p>;
+        return <p>Loading Please Wait...</p>;
     }
 
   return (
