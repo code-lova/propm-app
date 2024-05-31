@@ -26,20 +26,17 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
 
+  const fetchPost = async() => {
+    const response = await fetch('/api/prompt');
+    const data = await response.json();
+    setPost(data)
+  }
+
 
   useEffect(() => {
-    const fetchPost = async() => {
-      const response = await fetch('/api/prompt');
-      const data = await response.json();
-      setPost(data)
-    }
+    
     fetchPost();
 
-    const interval = setInterval(() => {
-      fetchPost();
-    }, 5000); // Poll every 5 seconds
-  
-    return () => clearInterval(interval);
   }, []);
 
   const filterPrompts = (searchtext) => {
