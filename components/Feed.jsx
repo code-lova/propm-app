@@ -96,9 +96,6 @@ const Feed = () => {
             )
     
       }
-
-     
-
     </section>
   )
 }

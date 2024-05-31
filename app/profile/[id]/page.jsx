@@ -13,8 +13,6 @@ const UserProfile = ({ params }) => {
 
   const [userPosts, setUserPosts] = useState([]);
 
-  console.log(userPosts)
-
   useEffect(() => {
     const fetchPosts = async () => {
         if(params?.id){
