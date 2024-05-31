@@ -34,6 +34,12 @@ const Feed = () => {
       setPost(data)
     }
     fetchPost();
+
+    const interval = setInterval(() => {
+      fetchPost();
+    }, 5000); // Poll every 5 seconds
+  
+    return () => clearInterval(interval);
   }, []);
 
   const filterPrompts = (searchtext) => {

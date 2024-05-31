@@ -16,7 +16,10 @@ export const POST = async (req) => {
         await newPrompt.save();
 
         return new Response(JSON.stringify(newPrompt), {
-            status: 201
+            status: 201,
+            headers: {
+                'Cache-Control': 'no-store'
+            }
         });
 
     }catch(error){
