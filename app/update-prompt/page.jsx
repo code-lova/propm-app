@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Loading from "@app/profile/loading";
 
 import Form from "@components/Form";
 
@@ -22,25 +23,24 @@ const EditPrompt = () => {
 
     useEffect(() => {
         const getPromptDetails = async() => {
-            if (promptId) {
-                try {
-                  const response = await fetch(`/api/prompt/${promptId}`);
-                  if (response.ok) {
-                    const data = await response.json();
-                    setPost({
-                      prompt: data.prompt,
-                      tag: data.tag,
-                    });
-                  } else {
-                    console.error('Failed to fetch prompt details');
-                  }
-                } catch (error) {
-                  console.error('Error fetching prompt details:', error);
+          if (promptId) {
+              try {
+                const response = await fetch(`/api/prompt/${promptId}`);
+                if (response.ok) {
+                  const data = await response.json();
+                  setPost({
+                    prompt: data.prompt,
+                    tag: data.tag,
+                  });
+                } else {
+                  console.error('Failed to fetch prompt details');
                 }
-            }
+              } catch (error) {
+                console.error('Error fetching prompt details:', error);
+              }
+          }
         }
 
-        
         getPromptDetails();
     }, [promptId]);
 
@@ -90,7 +90,7 @@ const EditPrompt = () => {
 
 const EditPromptPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <EditPrompt />
     </Suspense>
   );

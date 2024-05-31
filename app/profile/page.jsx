@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Profile from "@components/Profile";
 
+import Loading from "./loading";
+
 const MyProfile = () => {
 
     const router = useRouter()
@@ -61,7 +63,7 @@ const MyProfile = () => {
     }
 
     if (!session) {
-        return <p>Loading...</p>;
+        return <Loading />;
         
     }
 
