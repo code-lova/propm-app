@@ -1,6 +1,7 @@
 "use client";
 import {useState, useEffect} from 'react'
 import PromptCard from './PromptCard';
+import Loading from '@app/profile/loading';
 
 const PromptCardList = ({data, handleTagClick}) => {
   return (
@@ -26,18 +27,24 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
 
+
   const fetchPost = async() => {
-    const response = await fetch('/api/prompt');
-    const data = await response.json();
-    setPost(data)
+    try{
+      const response = await fetch('/api/prompt');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setPost(data)
+    }catch(error){
+      console.error('Failed to fetch feeds:', error);
+    }
   }
 
-
   useEffect(() => {
-    
     fetchPost();
-
   }, []);
+
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
@@ -71,6 +78,11 @@ const Feed = () => {
   };
 
 
+  if(!post){
+    return (
+      <Loading />
+    )
+  }
   
 
   return (
