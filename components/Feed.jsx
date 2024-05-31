@@ -1,4 +1,5 @@
 "use client";
+
 import {useState, useEffect} from 'react'
 import PromptCard from './PromptCard';
 import Loading from '@app/profile/loading';
@@ -19,7 +20,7 @@ const PromptCardList = ({data, handleTagClick}) => {
 
 const Feed = () => {
    
-  const [post, setPost] = useState([]);
+  const [allPost, setAllPost] = useState([]);
 
   // Search states
   const [searchText, setSearchText] = useState("");
@@ -35,7 +36,7 @@ const Feed = () => {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      setPost(data)
+      setAllPost(data)
     }catch(error){
       console.error('Failed to fetch feeds:', error);
     }
@@ -48,7 +49,7 @@ const Feed = () => {
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
-    return post.filter(
+    return allPost.filter(
       (item) =>
         regex.test(item.creator.username) ||
         regex.test(item.tag) ||
@@ -78,7 +79,7 @@ const Feed = () => {
   };
 
 
-  if(!post){
+  if(!allPost){
     return (
       <Loading />
     )
@@ -105,7 +106,7 @@ const Feed = () => {
           />
         ) : (
               <PromptCardList 
-                data={post}
+                data={allPost}
                 handleTagClick={handleTagClick}
               />
             )
