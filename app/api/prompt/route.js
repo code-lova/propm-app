@@ -16,7 +16,7 @@ export const GET = async(req, res) => {
         });
 
     }catch(error){
-        return Response("failed to fetch prompt feeds", {
+        return new Response("failed to fetch prompt feeds", {
             status: 500
         })
     }

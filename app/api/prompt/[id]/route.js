@@ -54,7 +54,7 @@ export const PATCH = async(req, {params}) => {
         });
 
     }catch(error){
-        return Response("failed to fetch prompt", {
+        return new Response("failed to fetch prompt", {
             status: 500
         })
     }
@@ -80,7 +80,7 @@ export const DELETE = async(req, {params}) => {
         });
 
     }catch(error){
-        return Response("failed to fetch prompt", {
+        return new Response("failed to fetch prompt", {
             status: 500
         })
     }
