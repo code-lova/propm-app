@@ -8,7 +8,6 @@ export const GET = async (req) => {
         const userId = urlParts[urlParts.length - 2]; // Adjust this index based on your URL structure
         
         await connectToDB();
-    
         const prompts = await Prompt.find({ creator: userId }).populate('creator');
     
         return new Response(JSON.stringify(prompts), {
