@@ -3,7 +3,7 @@ import Prompt from "@models/prompt";
 
 export const GET = async (req) => {
     try {
-        // Extracting the user ID from the request URL path
+        // Extracting the user ID from the request URL Path
         const urlParts = req.url.split('/');
         const userId = urlParts[urlParts.length - 2]; // Adjust this index based on your URL structure
         
